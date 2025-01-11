@@ -215,7 +215,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4604908377783157256
+--- !u!1001 &230151420
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -227,21 +227,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wegge
       objectReference: {fileID: 0}
-    - target: {fileID: 2315211243980358789, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
+    - target: {fileID: 4322495706675752555, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -293,4 +281,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 189751217}
-  - {fileID: 4604908377783157256}
+  - {fileID: 230151420}
