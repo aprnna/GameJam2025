@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6677038562379529901}
   - component: {fileID: 4518438715314024616}
   - component: {fileID: 7993624284465091319}
+  - component: {fileID: 4322495706675752555}
   - component: {fileID: 2315211243980358789}
   m_Layer: 0
   m_Name: Wegge
@@ -107,6 +108,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &4322495706675752555
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23107516163488422}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &2315211243980358789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   horizontalInput: 0
+  movement: {x: 0, y: 0}

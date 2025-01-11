@@ -7,8 +7,11 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Rigidbody2D rb;
     public float speed;
     public float horizontalInput;
+    private bool isCharging;
+    public Vector2 movement;
 
     void Start()
     {
@@ -23,14 +26,28 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput != 0)
         {
             spriteRenderer.flipX = horizontalInput < 0;
+        }
+        
+        if(!isCharging & horizontalInput != 0)
+        {
+            movement = new Vector2(horizontalInput, 0) * speed * Time.deltaTime;
+            transform.Translate(movement);
             animator.SetBool("is_Walking", true);
         }
-        if (horizontalInput == 0)
+        else
         {
             animator.SetBool("is_Walking", false);
         }
-        
-        Vector2 movement = new Vector2(horizontalInput, 0) * speed * Time.deltaTime;
-        transform.Translate(movement);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetBool("is_Rolling", true);
+             isCharging = true;
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            animator.SetBool("is_Rolling", false);
+            isCharging = false;
+        }
     }
 }
