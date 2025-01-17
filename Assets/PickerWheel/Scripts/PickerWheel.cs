@@ -117,58 +117,71 @@ namespace EasyUI.PickerWheelUI {
 
 
       public void Spin () {
-         if (!_isSpinning) {
-            _isSpinning = true ;
-            if (onSpinStartEvent != null)
-               onSpinStartEvent.Invoke () ;
+          if (!_isSpinning) {
+              _isSpinning = true;
+              if (onSpinStartEvent != null)
+                  onSpinStartEvent.Invoke();
 
-            int index = GetRandomPieceIndex () ;
-            WheelPiece piece = wheelPieces [ index ] ;
+              // Animasi rotasi awal dengan percepatan melambat
+              float totalRotations = 10; // Total 10 putaran
+              float initialDuration = 3f; // Durasi total awal sebelum melambat
+              float finalDuration = spinDuration; // Durasi akhir untuk melambat
 
-            if (piece.Chance == 0 && nonZeroChancesIndices.Count != 0) {
-               index = nonZeroChancesIndices [ Random.Range (0, nonZeroChancesIndices.Count) ] ;
-               piece = wheelPieces [ index ] ;
-            }
+              float midDuration = initialDuration * 0.5f; // Durasi untuk transisi ke melambat
+              Vector3 fastRotation = Vector3.back * (360 * totalRotations * 0.7f); // 70% dari putaran cepat
+              Vector3 slowRotation = Vector3.back * (360 * totalRotations * 0.3f); // 30% dari putaran lambat
 
-            float angle = -(pieceAngle * index) ;
+              wheelCircle
+                  .DORotate(fastRotation, midDuration, RotateMode.FastBeyond360)
+                  .SetEase(Ease.OutQuad) // Transisi lambat ke tengah
+                  .OnComplete(() => {
+                      // Setelah rotasi cepat selesai, mulai melambat untuk mendapatkan hasil
+                      int index = GetRandomPieceIndex();
+                      WheelPiece piece = wheelPieces[index];
 
-            float rightOffset = (angle - halfPieceAngleWithPaddings) % 360 ;
-            float leftOffset = (angle + halfPieceAngleWithPaddings) % 360 ;
+                      if (piece.Chance == 0 && nonZeroChancesIndices.Count != 0) {
+                          index = nonZeroChancesIndices[Random.Range(0, nonZeroChancesIndices.Count)];
+                          piece = wheelPieces[index];
+                      }
 
-            float randomAngle = Random.Range (leftOffset, rightOffset) ;
+                      float angle = -(pieceAngle * index);
 
-            Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * spinDuration) ;
+                      float rightOffset = (angle - halfPieceAngleWithPaddings) % 360;
+                      float leftOffset = (angle + halfPieceAngleWithPaddings) % 360;
 
-            //float prevAngle = wheelCircle.eulerAngles.z + halfPieceAngle ;
-            float prevAngle, currentAngle ;
-            prevAngle = currentAngle = wheelCircle.eulerAngles.z ;
+                      float randomAngle = Random.Range(leftOffset, rightOffset);
 
-            bool isIndicatorOnTheLine = false ;
+                      Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * finalDuration);
 
-            wheelCircle
-            .DORotate (targetRotation, spinDuration, RotateMode.Fast)
-            .SetEase (Ease.InOutQuart)
-            .OnUpdate (() => {
-               float diff = Mathf.Abs (prevAngle - currentAngle) ;
-               if (diff >= halfPieceAngle) {
-                  if (isIndicatorOnTheLine) {
-                     audioSource.PlayOneShot (audioSource.clip) ;
-                  }
-                  prevAngle = currentAngle ;
-                  isIndicatorOnTheLine = !isIndicatorOnTheLine ;
-               }
-               currentAngle = wheelCircle.eulerAngles.z ;
-            })
-            .OnComplete (() => {
-               _isSpinning = false ;
-               if (onSpinEndEvent != null)
-                  onSpinEndEvent.Invoke (piece) ;
+                      float prevAngle, currentAngle;
+                      prevAngle = currentAngle = wheelCircle.eulerAngles.z;
 
-               onSpinStartEvent = null ; 
-               onSpinEndEvent = null ;
-            }) ;
+                      bool isIndicatorOnTheLine = false;
 
-         }
+                      wheelCircle
+                          .DORotate(targetRotation, finalDuration, RotateMode.Fast)
+                          .SetEase(Ease.OutCubic) // Melambat di akhir rotasi
+                          .OnUpdate(() => {
+                              float diff = Mathf.Abs(prevAngle - currentAngle);
+                              if (diff >= halfPieceAngle) {
+                                  if (isIndicatorOnTheLine) {
+                                      audioSource.PlayOneShot(audioSource.clip);
+                                  }
+                                  prevAngle = currentAngle;
+                                  isIndicatorOnTheLine = !isIndicatorOnTheLine;
+                              }
+                              currentAngle = wheelCircle.eulerAngles.z;
+                          })
+                          .OnComplete(() => {
+                              _isSpinning = false;
+                              if (onSpinEndEvent != null)
+                                  onSpinEndEvent.Invoke(piece);
+
+                              onSpinStartEvent = null;
+                              onSpinEndEvent = null;
+                          });
+                  });
+          }
       }
 
       private void FixedUpdate () {
