@@ -11,7 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float horizontalInput;
     private bool isCharging;
+    private bool isRolling;
     public Vector2 movement;
+    public float dashspeed = 1f;
+
+    public float cooldownDuration = 2f;
+    public float cooldownTimer;
+    public bool isOnCooldown = false;
 
     void Start()
     {
@@ -23,31 +29,70 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
+
         if (horizontalInput != 0)
         {
             spriteRenderer.flipX = horizontalInput < 0;
         }
         
-        if(!isCharging & horizontalInput != 0)
+        if(!isCharging & horizontalInput != 0 & !isRolling)
         {
             movement = new Vector2(horizontalInput, 0) * speed * Time.deltaTime;
             transform.Translate(movement);
             animator.SetBool("is_Walking", true);
         }
+
+        else if(isRolling & horizontalInput != 0)
+        {
+            movement = new Vector2(horizontalInput, 0) * speed * dashspeed * Time.deltaTime;
+            transform.Translate(movement);
+
+            if (dashspeed > 1f)
+            {
+                dashspeed = dashspeed - 0.5f;
+                isOnCooldown = true;
+            }
+            else
+            {
+                isRolling = false;
+                animator.SetBool("is_Rolling", false);
+            }
+        }
+
+        else if(horizontalInput == 0 & isRolling)
+        {
+            isRolling = false;
+            dashspeed = 1f;
+            animator.SetBool("is_Rolling", false);
+        }
+
         else
         {
             animator.SetBool("is_Walking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) & !isRolling & !isOnCooldown)
         {
             animator.SetBool("is_Rolling", true);
-             isCharging = true;
+            isCharging = true;
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+
+        if(Input.GetKeyUp(KeyCode.Space) & !isRolling & isCharging)
         {
-            animator.SetBool("is_Rolling", false);
+            cooldownTimer = cooldownDuration;
+            dashspeed = 25f;
             isCharging = false;
+            isRolling = true;
+        }    
+
+        if(isOnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime; 
+            if (cooldownTimer <= 0)
+            {
+                isOnCooldown = false;
+                cooldownTimer = 0;
+            }
         }
     }
 }
