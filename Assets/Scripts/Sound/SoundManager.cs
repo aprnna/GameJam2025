@@ -21,6 +21,7 @@ namespace SmallHedge.SoundManager
                 instance = this;
                 audioSource = GetComponent<AudioSource>();
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         public static void PlaySound(SoundType sound, AudioSource source = null, float volume = 1)

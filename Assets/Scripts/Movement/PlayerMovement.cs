@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Rigidbody2D rb;
+    private AudioSource _audioSource;
     public Status status;
     public float horizontalInput;
     public Vector2 movement;
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnCooldown = false;
     public float cooldownDuration = 2f;
     
+    
 
     void Start()
     {
@@ -25,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         status = GetComponent<Status>();
+        _audioSource = GetComponent<AudioSource>();
+        SoundManager.PlaySound(SoundType.Music);
     }
 
     // Update is called once per frame
@@ -67,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W) & isOnGround & !isCharging)
         {
             rb.AddForce(Vector2.up * 40f, ForceMode2D.Impulse);
+            SoundManager.PlaySound(SoundType.Jump, _audioSource);
         }
 
         // Untuk proses turun dari platform
