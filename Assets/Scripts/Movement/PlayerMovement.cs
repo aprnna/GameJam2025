@@ -10,15 +10,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Status status;
     public float horizontalInput;
-    private bool isCharging;
-    private bool isRolling;
     public Vector2 movement;
-    public float cooldownDuration = 2f;
     public float cooldownTimer;
+    public bool isOnGround;
+    public bool isCharging;
+    public bool isRolling;
     public bool isOnCooldown = false;
+    public float cooldownDuration = 2f;
+    
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         status = GetComponent<Status>();
@@ -60,8 +63,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("is_Walking", false);
         }
 
+        // Untuk proses loncat
+        if(Input.GetKeyDown(KeyCode.W) & isOnGround & !isCharging)
+        {
+            rb.AddForce(Vector2.up * 40f, ForceMode2D.Impulse);
+        }
+
+        // Untuk proses turun dari platform
+
         // Untuk proses charged attack
-        if (Input.GetKeyDown(KeyCode.Space) & !isRolling & !isOnCooldown)
+        if (Input.GetKeyDown(KeyCode.Space) & !isRolling & !isOnCooldown & isOnGround)
         {
             charged();
         }
@@ -79,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Method-Method Control
+    // Method-Method Control Player
 
     // Method untuk proses berjalan
     public void walking()
@@ -139,6 +150,22 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnCooldown = false;
             cooldownTimer = 0;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("platform"))
+        {
+            isOnGround = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("platform"))
+        {
+            isOnGround = false;
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4518438715314024616}
   - component: {fileID: 7993624284465091319}
   - component: {fileID: 4322495706675752555}
+  - component: {fileID: 2685612213829052760}
   - component: {fileID: 2315211243980358789}
   - component: {fileID: 5546319630510418316}
   m_Layer: 0
@@ -124,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -136,6 +137,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &2685612213829052760
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23107516163488422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.049954116}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.54009175}
+  m_EdgeRadius: 0
 --- !u!114 &2315211243980358789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,9 +197,12 @@ MonoBehaviour:
   status: {fileID: 0}
   horizontalInput: 0
   movement: {x: 0, y: 0}
-  cooldownDuration: 2
   cooldownTimer: 0
+  isOnGround: 0
+  isCharging: 0
+  isRolling: 0
   isOnCooldown: 0
+  cooldownDuration: 2
 --- !u!114 &5546319630510418316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,4 +219,4 @@ MonoBehaviour:
   attack: 0
   defense: 0
   speed: 5
-  dashspeed: 0
+  dashspeed: 1
