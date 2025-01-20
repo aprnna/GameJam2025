@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3171432478848933444}
   - component: {fileID: 8870410833254575501}
   - component: {fileID: 837473992115805827}
-  - component: {fileID: 5425846973195733641}
+  - component: {fileID: 9084353223821821755}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: enemy
@@ -118,14 +118,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195059436752996393}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -134,7 +134,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &8870410833254575501
@@ -194,12 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e3753a2d667584ea23fc2e5cd4a8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 0
+  hitPoint: 500
   attack: 0
   defense: 0
   speed: 0
   dashspeed: 0
---- !u!114 &5425846973195733641
+--- !u!114 &9084353223821821755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,6 +208,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 195059436752996393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a291b87d13d36924e9614599a68da7d4, type: 3}
+  m_Script: {fileID: 11500000, guid: d215cf3ed515632479a3db7396e70891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
+  isTakingDamage: 0
+  player: {fileID: 23107516163488422, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
