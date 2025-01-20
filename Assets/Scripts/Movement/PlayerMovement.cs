@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnCooldown = false;
     public float cooldownDuration = 2f;
     
-    
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         // Jika berhenti berjalan
         else
         {
+            // transform.position = new Vector2(transform.position.x, transform.position.y + 0.0001f);
             animator.SetBool("is_Walking", false);
         }
 
@@ -130,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (status.dashspeed > 1f)
         {
-            status.dashspeed = status.dashspeed - 0.5f;
+            status.dashspeed = status.dashspeed - 1f;
             isOnCooldown = true;
         }
         else
@@ -164,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("platform"))
         {
             isOnGround = true;
-        }
+        } 
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -172,6 +171,15 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("platform"))
         {
             isOnGround = false;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy") & !isRolling)
+        {
+            Debug.Log("Got Hit");
+            status.hitPoint = status.hitPoint - 10;
         }
     }
 }
