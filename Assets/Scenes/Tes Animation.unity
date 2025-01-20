@@ -337,6 +337,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
   m_PrefabInstance: {fileID: 1395775150}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &194197262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93717938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b79e25e3aa0a1469ce6a71820e2ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 0}
+  playermovement: {fileID: 0}
+  isTakingDamage: 0
 --- !u!1 &935608868
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,17 +494,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wegge
       objectReference: {fileID: 0}
+    - target: {fileID: 2685612213829052760, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: m_Size.x
+      value: 0.46914393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685612213829052760, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: m_Size.y
+      value: 0.48514116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685612213829052760, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.018837959
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685612213829052760, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.02247873
+      objectReference: {fileID: 0}
     - target: {fileID: 4322495706675752555, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4322495706675752555, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_SleepingMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4322495706675752555, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5546319630510418316, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: hitPoint
@@ -540,8 +571,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 23107516163488422, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 93717946}
+    - targetCorrespondingSourceObject: {fileID: 23107516163488422, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 194197262}
   m_SourcePrefab: {fileID: 100100000, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
 --- !u!1001 &2058433452
 PrefabInstance:
@@ -573,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3171432478848933444, guid: 97f19f987eae9694582ce71326e1967b, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123719760847777216, guid: 97f19f987eae9694582ce71326e1967b, type: 3}
       propertyPath: m_LocalPosition.x

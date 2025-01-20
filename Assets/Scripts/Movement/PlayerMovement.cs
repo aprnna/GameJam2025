@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         // Jika berhenti berjalan
         else
         {
-            // transform.position = new Vector2(transform.position.x, transform.position.y + 0.0001f);
             animator.SetBool("is_Walking", false);
         }
 
@@ -174,12 +173,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("enemy") & !isRolling)
-        {
-            Debug.Log("Got Hit");
-            status.hitPoint = status.hitPoint - 10;
-        }
-    }
+    
 }
