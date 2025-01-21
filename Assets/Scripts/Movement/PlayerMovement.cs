@@ -33,47 +33,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Mengambil nilai arah horizontal
-        horizontalInput = Input.GetAxis("Horizontal");
-
-        // Untuk membalik arah sprite bila karakter ke arah kiri atau kanan
-        if (horizontalInput != 0)
-        {
-            spriteRenderer.flipX = horizontalInput < 0;
-        }
-        
-        // Untuk proses berjalan
-        if(!isCharging & horizontalInput != 0 & !isRolling)
-        {
-            walking();
-        }
-
-        // Untuk proses dash
-        else if(isRolling & horizontalInput != 0)
-        {
-            dashDirection();
-        }
-
-        // Untuk proses bila tidak jadi dash
-        else if(horizontalInput == 0 & isRolling)
-        {
-            dashCancel();
-        }
-
-        // Jika berhenti berjalan
-        else
-        {
-            animator.SetBool("is_Walking", false);
-        }
-
         // Untuk proses loncat
         if(Input.GetKeyDown(KeyCode.W) & isOnGround & !isCharging)
         {
-            rb.AddForce(Vector2.up * 40f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 13.5f, ForceMode2D.Impulse);
             SoundManager.PlaySound(SoundType.Jump, _audioSource);
         }
-
-        // Untuk proses turun dari platform
 
         // Untuk proses charged attack
         if (Input.GetKeyDown(KeyCode.Space) & !isRolling & !isOnCooldown & isOnGround)
@@ -85,7 +50,45 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space) & !isRolling & isCharging)
         {
             dashInit();
-        }    
+        }
+    }
+    
+    void FixedUpdate()
+    {
+        // Mengambil nilai arah horizontal
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        // Untuk membalik arah sprite bila karakter ke arah kiri atau kanan
+        if (horizontalInput != 0)
+        {
+            spriteRenderer.flipX = horizontalInput < 0;
+        }
+
+        // Jika berhenti berjalan
+        else
+        {
+            animator.SetBool("is_Walking", false);
+        }
+        
+        // Untuk proses berjalan
+        if(!isCharging & horizontalInput != 0 & !isRolling)
+        {
+            walking();
+        }
+
+        // Untuk proses dash
+        if(isRolling & horizontalInput != 0)
+        {
+            dashDirection();
+        }
+
+        // Untuk proses bila tidak jadi dash
+        if(horizontalInput == 0 & isRolling)
+        {
+            dashCancel();
+        }
+
+        // Untuk proses turun dari platform          
 
         // Untuk cooldown charged attack
         if(isOnCooldown)
@@ -128,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (status.dashspeed > 1f)
         {
-            status.dashspeed = status.dashspeed - 1f;
+            status.dashspeed = status.dashspeed - 2f;
             isOnCooldown = true;
         }
         else

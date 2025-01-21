@@ -28,7 +28,7 @@ public class EnemyStatusManager : MonoBehaviour
         {
             isTakingDamage = true; 
             status.hitPoint -= 100; 
-            Debug.Log("Got Hit");
+            Debug.Log("Enemy Got Hit");
             Invoke("ResetDamageFlag", 2f); // Delay damage taking for 2 seconds
         }
     }
