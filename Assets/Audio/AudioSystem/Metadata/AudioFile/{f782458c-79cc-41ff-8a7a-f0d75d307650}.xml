@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f782458c-79cc-41ff-8a7a-f0d75d307650}">
+		<property name="assetPath">
+			<value>SFX/Wolf/Wolf Damage B.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.34614583333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{72fa3cf2-d613-4154-a07e-99ccc7a01c42}</destination>
+		</relationship>
+	</object>
+</objects>

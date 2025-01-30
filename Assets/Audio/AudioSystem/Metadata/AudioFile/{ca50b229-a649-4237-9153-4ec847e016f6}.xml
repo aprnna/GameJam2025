@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ca50b229-a649-4237-9153-4ec847e016f6}">
+		<property name="assetPath">
+			<value>SFX/Wolf/Wolf Howl Intro.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.7788541666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{72fa3cf2-d613-4154-a07e-99ccc7a01c42}</destination>
+		</relationship>
+	</object>
+</objects>
