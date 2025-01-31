@@ -33,6 +33,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Mengambil nilai arah horizontal
+        horizontalInput = Input.GetAxis("Horizontal");
+        
+        // Untuk proses berjalan
+        if(!isCharging & horizontalInput != 0 & !isRolling)
+        {
+            walking();
+        }
+
         // Untuk proses loncat
         if(Input.GetKeyDown(KeyCode.W) & isOnGround & !isCharging)
         {
@@ -55,9 +64,6 @@ public class PlayerMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        // Mengambil nilai arah horizontal
-        horizontalInput = Input.GetAxis("Horizontal");
-
         // Untuk membalik arah sprite bila karakter ke arah kiri atau kanan
         if (horizontalInput != 0)
         {
@@ -68,12 +74,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("is_Walking", false);
-        }
-        
-        // Untuk proses berjalan
-        if(!isCharging & horizontalInput != 0 & !isRolling)
-        {
-            walking();
         }
 
         // Untuk proses dash
