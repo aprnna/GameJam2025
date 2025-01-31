@@ -25,7 +25,7 @@ public class StatusManager : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy") && !playermovement.isRolling && !isTakingDamage) 
         {
             isTakingDamage = true; 
-            status.hitPoint -= 10; 
+            status.hitPoint -= 150; 
             Debug.Log("Got Hit");
             Invoke("ResetDamageFlag", 2f); // Delay damage taking for 2 seconds
         }
