@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: bc8e4b68305b7224a8b1853ca3f29a71
   - enabled: 1
-    path: Assets/Scenes/BossBattleWolf.unity
+    path: Assets/Scenes/Boss Battle Wolf.unity
     guid: 5216446739808ce408f12a93675e2261
   m_configObjects: {}
