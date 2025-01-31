@@ -9,13 +9,14 @@ public class BackgroundMovement : MonoBehaviour
     // private Status playerStatus;
     // private PlayerMovement playerScript;
 
-    public Transform player; // Referensi ke objek player
+    private Transform playerTransform; // Referensi ke objek player
     public float parallaxSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        // player = GameObject.FindWithTag("player");
+        GameObject player = GameObject.FindWithTag("player");
+        playerTransform = player.transform;
         // playerStatus = player.GetComponent<Status>(); 
         // playerScript = player.GetComponent<PlayerMovement>(); 
         
@@ -24,7 +25,7 @@ public class BackgroundMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = (player.transform.position.x * (1 - parallaxSpeed));
+        float distance = (playerTransform.transform.position.x * (parallaxSpeed));
         transform.position = new Vector3(distance, transform.position.y, transform.position.z);
     }
 }
