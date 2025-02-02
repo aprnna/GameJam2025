@@ -670,6 +670,7 @@ MonoBehaviour:
   buttonContinue: {fileID: 1783694538}
   buttonExit: {fileID: 1880534290}
   player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!4 &335206377
 Transform:
   m_ObjectHideFlags: 0
@@ -1036,10 +1037,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
-    - target: {fileID: 2680443345146458426, guid: 97f19f987eae9694582ce71326e1967b, type: 3}
-      propertyPath: dashDistance
-      value: 17
-      objectReference: {fileID: 0}
     - target: {fileID: 8123719760847777216, guid: 97f19f987eae9694582ce71326e1967b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.93
@@ -1194,6 +1191,10 @@ PrefabInstance:
     - target: {fileID: 23107516163488422, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_Name
       value: Wegge
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546319630510418316, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
+      propertyPath: hitPoint
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6677038562379529901, guid: 8ed90907783b50d498a92290d173e7fc, type: 3}
       propertyPath: m_LocalPosition.x

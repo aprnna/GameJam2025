@@ -22,10 +22,10 @@ public class StatusManager : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy") && !playermovement.isRolling && !isTakingDamage) 
+        if (collision.gameObject.CompareTag("enemy") && !playermovement.isRolling && !isTakingDamage && !playermovement.isCharging) 
         {
             isTakingDamage = true; 
-            status.hitPoint -= 150; 
+            status.hitPoint -= 20; 
             Debug.Log("Got Hit");
             Invoke("ResetDamageFlag", 2f); // Delay damage taking for 2 seconds
         }

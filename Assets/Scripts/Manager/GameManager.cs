@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public Button buttonExit;
 
     public GameObject player;
+    public GameObject enemy;
     private Status playerStatus;
+    private Status enemyStatus;
 
     void Start()
     {
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("player");
         playerStatus = player.GetComponent<Status>(); 
+
+        enemy = GameObject.FindWithTag("enemy");
+        enemyStatus = enemy.GetComponent<Status>(); 
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         if(!isGameOver)
         {
-            if(playerStatus.hitPoint <= 0)
+            if(playerStatus.hitPoint <= 0 || enemyStatus.hitPoint <= 0)
             {
                 isGameOver = true;
             }
